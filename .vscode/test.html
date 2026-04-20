@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>前端测试页面</title>
+</head>
+<body>
+    <h1>失物招领列表测试</h1>
+    <button onclick="fetchData()">点击获取数据</button>
+    <div id="result"></div>
+
+    <script>
+        function fetchData() {
+            // 这里的地址就是你刚才在浏览器里访问的地址
+            fetch('http://localhost:8082/api/items')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // 在控制台看数据
+                    document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerText = '出错了，看控制台';
+                });
+        }
+    </script>
+</body>
+</html>
